@@ -1,0 +1,19 @@
+name: API-Test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create .env
+      run: mv .env.example .env
+    - name: Install server
+      run: make server.install
+    - name: Upgrade database
+      run: make database.upgrade
+    - name: Run tests
+      run: make test
