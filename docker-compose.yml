@@ -27,6 +27,7 @@ services:
       - dbdata
 
   testserver:
+    restart: always
     env_file: .env
     image: python:3.7
     working_dir: /mnt
@@ -43,3 +44,8 @@ services:
 
   testdb:
     image: postgres:9.4
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_PASSWORD: "password"
+    volumes_from:
+      - dbdata

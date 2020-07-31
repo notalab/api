@@ -1,2 +1,2 @@
-from .authentication import RegisterResource, LoginResource, RefreshResource
+from .authentication import LoginResource, RefreshResource, RegisterResource
 from .notebook import NotebookResource, NotebooksResource

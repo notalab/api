@@ -1,6 +1,8 @@
+import jwt
+
 from . import db
 from .abc import BaseModel, MetaBaseModel
-import jwt
+
 
 class User(db.Model, BaseModel, metaclass=MetaBaseModel):
     """ The User model """
@@ -19,15 +21,12 @@ class User(db.Model, BaseModel, metaclass=MetaBaseModel):
         self.email = email
         self.password = password
         self.secret = secret
-    
+
     def generateToken(self):
         """ Generate JWT auth token """
 
-        ret = jwt.encode({'personal_secret': self.secret}, 'JWT_SECRET')
-        return ret.decode('utf-8')
-    
+        ret = jwt.encode({"personal_secret": self.secret}, "JWT_SECRET")
+        return ret.decode("utf-8")
+
     def serialized(self):
-        return {
-            'username': self.username,
-            'email': self.email
-        }
+        return {"username": self.username, "email": self.email}

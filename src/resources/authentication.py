@@ -4,43 +4,37 @@ from flask_restful import Resource
 from flask_restful.reqparse import Argument
 
 from repositories import UserRepository
-from util import parse_params
-from util import auth
+from util import auth, parse_params
 
 
 class RegisterResource(Resource):
-
     @staticmethod
     @parse_params(
         Argument("username", location="json", required=True, help="Username."),
         Argument("email", location="json", required=True, help="Email."),
-        Argument("password", location="json", required=True, help="Password.")
+        Argument("password", location="json", required=True, help="Password."),
     )
     @swag_from("../swagger/auth/register.yml")
     def post(username, email, password):
-        user = UserRepository.create(
-            username=username, email=email, password=password
-        )
+        user = UserRepository.create(username=username, email=email, password=password)
 
         return jsonify({"data": user})
 
-class LoginResource(Resource):
 
+class LoginResource(Resource):
     @staticmethod
     @parse_params(
         Argument("username", location="json", required=True, help="Username."),
-        Argument("password", location="json", required=True, help="Password.")
+        Argument("password", location="json", required=True, help="Password."),
     )
     @swag_from("../swagger/auth/login.yml")
     def post(username, password):
-        user = UserRepository.authenticate(
-            username=username, password=password
-        )
+        user = UserRepository.authenticate(username=username, password=password)
 
         return jsonify({"data": user})
 
-class RefreshResource(Resource):
 
+class RefreshResource(Resource):
     @staticmethod
     @auth()
     @swag_from("../swagger/auth/refresh.yml")

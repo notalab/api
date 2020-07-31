@@ -1,2 +1,2 @@
-from .user import UserRepository
 from .notebook import NotebookRepository
+from .user import UserRepository

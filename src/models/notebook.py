@@ -1,6 +1,8 @@
+import jwt
+
 from . import db
 from .abc import BaseModel, MetaBaseModel
-import jwt
+
 
 class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
     """ The Notebook Model """
@@ -21,12 +23,12 @@ class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
         self.user = user
         self.created_at = created_at
         self.updated_at = updated_at
-    
+
     def transform(self):
         return {
-            'id': self.id,
-            'name': self.name,
-            'color': self.color,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
+            "id": self.id,
+            "name": self.name,
+            "color": self.color,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }

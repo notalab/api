@@ -4,8 +4,7 @@ from flask_restful import Resource
 from flask_restful.reqparse import Argument
 
 from repositories import NotebookRepository
-from util import parse_params
-from util import auth
+from util import auth, parse_params
 
 
 class NotebookResource(Resource):
@@ -13,13 +12,10 @@ class NotebookResource(Resource):
     @auth(id)
     @swag_from("../swagger/auth/register.yml")
     def delete(id, user):
-        notebook = NotebookRepository.delete(
-            user=user,
-            id=id
-        )
+        notebook = NotebookRepository.delete(user=user, id=id)
 
         return jsonify({"data": notebook})
-    
+
     @staticmethod
     @auth(id)
     @parse_params(
@@ -28,14 +24,10 @@ class NotebookResource(Resource):
     )
     @swag_from("../swagger/auth/register.yml")
     def put(id, user, name, color):
-        notebook = NotebookRepository.update(
-            user=user,
-            id=id,
-            name=name,
-            color=color
-        )
+        notebook = NotebookRepository.update(user=user, id=id, name=name, color=color)
 
         return jsonify({"data": notebook})
+
 
 class NotebooksResource(Resource):
     @staticmethod
@@ -46,9 +38,7 @@ class NotebooksResource(Resource):
     )
     @swag_from("../swagger/auth/register.yml")
     def post(user, name, color):
-        notebook = NotebookRepository.create(
-            user=user, name=name, color=color
-        )
+        notebook = NotebookRepository.create(user=user, name=name, color=color)
 
         return jsonify({"data": notebook})
 
@@ -56,8 +46,6 @@ class NotebooksResource(Resource):
     @auth()
     @swag_from("../swagger/auth/register.yml")
     def get(user):
-        notebooks = NotebookRepository.getAll(
-            user=user
-        )
+        notebooks = NotebookRepository.getAll(user=user)
 
         return jsonify({"data": notebooks})
