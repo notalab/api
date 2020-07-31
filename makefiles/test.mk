@@ -4,7 +4,7 @@
 
 .PHONY: test
 test: ## Launch tests in their own docker container
-	docker-compose up testserver
+	docker-compose run --rm testserver
 
 .PHONY: coverage
 test.coverage: ## Generate test coverage
