@@ -11,6 +11,8 @@ jobs:
         host: ${{ secrets.SERVER_IP }}
         port: 22
         username: root
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
         key: ${{ secrets.SSH_KEY }}
-        script: cd ${{ secrets.PROJECT_PATH }} && chmod +x deploy-staging.sh && ./deploy-staging.sh
+        script: |
+          cd nota-staging
+          chmod +x deploy-staging.sh
+          ./deploy-staging.sh

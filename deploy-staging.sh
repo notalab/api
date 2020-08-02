@@ -15,3 +15,4 @@ docker-compose stop
 docker-compose up -d server
 
 echo "Finished"
+git status
