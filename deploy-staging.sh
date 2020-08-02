@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Pulling latest version from staging"
-git fetch --all && git checkout --force "origin/staging"
+git fetch --all && git checkout staging
 git pull
 cp .env.example .env
 
