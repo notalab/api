@@ -2,7 +2,7 @@
 echo "Pulling latest version from staging"
 git fetch --all && git checkout staging
 git pull
-cp .env.example .env
+#cp .env.example .env
 
 echo "Installing server dependencies"
 docker-compose run --rm server pip install -r requirements-dev.txt --user --upgrade --no-warn-script-location
