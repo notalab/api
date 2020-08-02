@@ -16,7 +16,8 @@ jobs:
           cd nota-staging
           git fetch --all && git checkout staging
           git pull
-          cp ~/nota-staging-env/* .
+          cp ~/nota-staging-env/docker-compose-stg.yml .
+          cp ~/nota-staging-env/.env .
           docker-compose run --rm server pip install -r requirements-dev.txt --user --upgrade --no-warn-script-location
           docker-compose run --rm server python src/manage.py db upgrade
           docker-compose stop
