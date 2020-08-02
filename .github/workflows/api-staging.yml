@@ -1,18 +1,16 @@
 name: API-Nota-STG
-
 on: [push]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v1
-      - name: Deploy Application
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          port: 22
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          key: ${{ secrets.SSH_KEY }}
-          script: cd ${{ secrets.PROJECT_PATH }} && chmod +x deploy-staging.sh && ./deploy-staging.sh
+    - uses: actions/checkout@v1
+    - name: Deploy Application
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        port: 22
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        key: ${{ secrets.SSH_KEY }}
+        script: cd ${{ secrets.PROJECT_PATH }} && chmod +x deploy-staging.sh && ./deploy-staging.sh
