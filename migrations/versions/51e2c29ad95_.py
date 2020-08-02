@@ -1,4 +1,4 @@
-""" create the Users table
+""" Create the Users table
 
 Revision ID: 51e2c29ad95
 Revises: 4f2e2c180af

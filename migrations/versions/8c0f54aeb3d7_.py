@@ -1,4 +1,4 @@
-"""empty message
+"""Add ID column to Notebooks
 
 Revision ID: 8c0f54aeb3d7
 Revises: f8450e6a6ac3

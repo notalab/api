@@ -1,4 +1,4 @@
-"""empty message
+"""Create Notebooks table
 
 Revision ID: d8e52342770d
 Revises: 28ccac0185ff

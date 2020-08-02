@@ -1,4 +1,4 @@
-"""empty message
+"""Add ID column to Users
 
 Revision ID: f8450e6a6ac3
 Revises: d8e52342770d
