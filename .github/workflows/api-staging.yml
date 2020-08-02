@@ -14,5 +14,11 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd nota-staging
-          chmod +x deploy-staging.sh
-          ./deploy-staging.sh
+          git fetch --all && git checkout staging
+          git pull
+          cp ../nota-staging-env/* .
+          docker-compose run --rm server pip install -r requirements-dev.txt --user --upgrade --no-warn-script-location
+          docker-compose run --rm server python src/manage.py db upgrade
+          docker-compose stop
+          docker-compose -f docker-compose-stg.yml up -d server
+          git status
