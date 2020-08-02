@@ -31,4 +31,5 @@ class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
             "color": self.color,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "notes": []
         }
