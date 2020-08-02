@@ -1,9 +1,6 @@
 name: API-Nota-STG
 
-on:
-  - push:
-    - branches:
-      - staging
+on: [push]
 
 jobs:
   deploy:
