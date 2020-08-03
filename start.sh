@@ -1,0 +1,1 @@
+docker run --name nota -d -p 8000:5000 nota:latest

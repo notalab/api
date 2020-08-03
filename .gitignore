@@ -7,4 +7,5 @@ vendor/
 .coverage
 coverage/
 .env
-
+.env.prod
+.env.stg
