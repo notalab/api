@@ -1,0 +1,33 @@
+name: API-Nota-STG
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy Application
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        port: 22
+        username: root
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd nota-staging
+          git fetch --all && git checkout develop
+          git pull
+          docker build -t nota:latest .
+          docker stop nota && docker rm nota
+          docker run --name nota \
+          -e APPLICATION_POSTGRES_HOST=${{ secrets.APPLICATION_POSTGRES_HOST }} \
+          -e APPLICATION_POSTGRES_USER=${{ secrets.APPLICATION_POSTGRES_USER }} \
+          -e APPLICATION_POSTGRES_PW=${{ secrets.APPLICATION_POSTGRES_PW }} \
+          -e APPLICATION_POSTGRES_PORT=${{ secrets.APPLICATION_POSTGRES_PORT }} \
+          -e APPLICATION_POSTGRES_DB=${{ secrets.APPLICATION_POSTGRES_DB }} \
+          -e ENVIRONMENT=dev \
+          -d -p 8000:5000 nota:latest
+          git status

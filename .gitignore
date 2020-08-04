@@ -7,4 +7,6 @@ vendor/
 .coverage
 coverage/
 .env
+.env.prod
+.env.stg
 docker-compose-stg.yml

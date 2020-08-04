@@ -1,0 +1,25 @@
+version: "2"
+
+services:
+  server:
+    build: .
+    env_file:
+      - .env.prod
+    image: python:3.7
+    volumes:
+      - .:/mnt
+    ports:
+      - 5000:5000
+    #command: python src/manage.py run -h 0.0.0.0
+
+#   dbdata:
+#     image: busybox
+#     volumes:
+#       - /var/lib/postgresql/data
+#   db:
+#     image: postgres:9.4
+#     environment:
+#       POSTGRES_DB: "postgres"
+#       POSTGRES_PASSWORD: "password"
+#     volumes_from:
+#       - dbdata
