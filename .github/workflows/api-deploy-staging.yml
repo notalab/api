@@ -14,7 +14,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd nota-staging
-          git fetch --all && git checkout staging
+          git fetch --all && git checkout develop
           git pull
           docker build -t nota:latest .
           docker run --name nota \
