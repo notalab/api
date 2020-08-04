@@ -15,11 +15,12 @@ COPY .env.example ./.env
 COPY entrypoint.sh .
 
 ENV FLASK_APP server.py
+ENV APPLICATION_ROOT /api
 
 RUN chown -R nota:nota ./
 USER nota
 
 RUN chmod +x entrypoint.sh
 
-EXPOSE 5000
+EXPOSE 5000 8000
 ENTRYPOINT [ "sh", "./entrypoint.sh" ]

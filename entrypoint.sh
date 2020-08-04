@@ -1,3 +1,4 @@
 #!/bin/sh
-flask db upgrade
-exec gunicorn -b :5000 --access-logfile - --error-logfile - src.wsgi:server
+
+#flask db upgrade
+exec gunicorn -b :5000 --access-logfile - --error-logfile - --chdir ./src wsgi:application
