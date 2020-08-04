@@ -1,5 +1,9 @@
 name: API-Nota-STG
-on: [push]
+on:
+  push:
+    branches:
+      - staging
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
