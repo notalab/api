@@ -17,6 +17,7 @@ jobs:
           git fetch --all && git checkout develop
           git pull
           docker build -t nota:latest .
+          docker stop nota && docker rm nota
           docker run --name nota \
           -e APPLICATION_POSTGRES_HOST=${{ secrets.APPLICATION_POSTGRES_HOST }} \
           -e APPLICATION_POSTGRES_USER=${{ secrets.APPLICATION_POSTGRES_USER }} \
