@@ -15,7 +15,11 @@ class UserRepository:
     def create(username, email, password):
         """ Create a new user """
 
-        exists_username = bool(User.query.filter_by(username=username).first())
+        try:
+            exists_username = bool(User.query.filter_by(username=username).first())
+        except Exception as e:
+            return {"err": str(e)}
+
         exists_email = bool(User.query.filter_by(email=email).first())
         if exists_username:
             raise UnprocessableEntity(description="USER_USERNAME_EXISTS")
