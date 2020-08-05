@@ -23,7 +23,7 @@ class NotebookRepository:
         notebook = Notebook(
             name=name,
             color=color,
-            user=user.id,
+            user_id=user.id,
             created_at=current_time,
             updated_at=current_time,
         )
@@ -36,7 +36,7 @@ class NotebookRepository:
     def getAll(user):
         """ Get all notebooks for the authenticated user """
 
-        notebooks = Notebook.query.filter_by(user=user.id).all()
+        notebooks = Notebook.query.filter_by(user_id=user.id).all()
 
         ret = []
         for notebook in notebooks:
@@ -48,7 +48,7 @@ class NotebookRepository:
     def delete(user, id):
         """ Delete a specific notebook by ID """
 
-        notebook = Notebook.query.filter_by(id=id, user=user.id).first()
+        notebook = Notebook.query.filter_by(id=id, user_id=user.id).first()
 
         if not notebook:
             raise UnprocessableEntity(description="NOTEBOOK_NOT_FOUND")
@@ -61,7 +61,7 @@ class NotebookRepository:
     def update(user, id, name, color):
         """ Update a notebook by ID """
 
-        notebook = Notebook.query.filter_by(id=id, user=user.id).first()
+        notebook = Notebook.query.filter_by(id=id, user_id=user.id).first()
 
         if not notebook:
             raise UnprocessableEntity(description="NOTEBOOK_NOT_FOUND")

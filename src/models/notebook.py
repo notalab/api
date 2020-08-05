@@ -12,7 +12,7 @@ class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(24))
     color = db.Column(db.String(6))
-    user = db.Column(db.Integer())
+    user_id = db.Column(db.Integer())
     created_at = db.Column(db.Integer())
     updated_at = db.Column(db.Integer())
 
@@ -20,7 +20,7 @@ class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
         """ Create a new Notebook """
         self.name = name
         self.color = color
-        self.user = user
+        self.user_id = user
         self.created_at = created_at
         self.updated_at = updated_at
 
