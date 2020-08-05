@@ -16,11 +16,11 @@ class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
     created_at = db.Column(db.Integer())
     updated_at = db.Column(db.Integer())
 
-    def __init__(self, name, color, user, created_at, updated_at):
+    def __init__(self, name, color, user_id, created_at, updated_at):
         """ Create a new Notebook """
         self.name = name
         self.color = color
-        self.user_id = user
+        self.user_id = user_id
         self.created_at = created_at
         self.updated_at = updated_at
 
