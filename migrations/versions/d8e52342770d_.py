@@ -19,7 +19,7 @@ def upgrade():
         'notebooks',
         sa.Column('name', sa.String(length=24), nullable=False),
         sa.Column('color', sa.String(length=6), nullable=False),
-        sa.Column('user', sa.Integer(), nullable=False),
+        sa.Column('user_id', sa.Integer(), nullable=False),
         sa.Column('created_at', sa.Integer(), nullable=False),
         sa.Column('updated_at', sa.Integer(), nullable=False)
     )
