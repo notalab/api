@@ -29,3 +29,20 @@ class NoteRepository:
         note.save()
 
         return note.transform()
+    
+    @staticmethod
+    def update(user, id, title, content):
+        """ Update a notebook by ID """
+
+        current_time = int(time.time())
+        note = Note.query.filter_by(id=id, user_id=user.id).first()
+
+        if not note:
+            raise UnprocessableEntity(description="NOTE_NOT_FOUND")
+        
+        note.title = title
+        note.content = content
+        note.updated_at = current_time
+        note.save()
+
+        return note.transform()
