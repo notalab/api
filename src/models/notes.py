@@ -2,7 +2,7 @@ import jwt
 
 from . import db
 from .abc import BaseModel, MetaBaseModel
-
+from .user import User
 
 class Note(db.Model, BaseModel, metaclass=MetaBaseModel):
     """ The Note Model """
@@ -27,4 +27,13 @@ class Note(db.Model, BaseModel, metaclass=MetaBaseModel):
         self.updated_at = updated_at
 
     def transform(self):
-        return {"data": 25000}
+        user = User.query.filter_by(id=self.user_id).first()
+
+        return {
+            "id": self.id,
+            "title": self.title,
+            "content": self.content,
+            "ownerUsername": user.username if user is not None else "unknown",
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at
+        }
