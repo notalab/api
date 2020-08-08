@@ -2,6 +2,7 @@ import jwt
 
 from . import db
 from .abc import BaseModel, MetaBaseModel
+from .notes import Note
 
 
 class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
@@ -31,5 +32,9 @@ class Notebook(db.Model, BaseModel, metaclass=MetaBaseModel):
             "color": self.color,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "notes": []
+            "notes": self.getNotes()
         }
+    
+    def getNotes(self):
+        notes = Note.query.filter_by(notebook_id=self.id).all()
+        return [note.transform() for note in notes]

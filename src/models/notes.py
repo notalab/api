@@ -34,6 +34,6 @@ class Note(db.Model, BaseModel, metaclass=MetaBaseModel):
             "title": self.title,
             "content": self.content,
             "ownerUsername": user.username if user is not None else "unknown",
-            "createdAt": self.created_at,
-            "updatedAt": self.updated_at
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
         }
