@@ -16,6 +16,9 @@ class NoteRepository:
     def create(user, notebook_id, title, content):
         """ Create a new note """
 
+        if len(title) > 32:
+            return UnprocessableEntity(description="NOTE_TITLE_MAX_LENGTH")
+
         current_time = int(time.time())
         note = Note(
             notebook_id=notebook_id,
@@ -33,6 +36,9 @@ class NoteRepository:
     @staticmethod
     def update(user, id, title, content):
         """ Update a notebook by ID """
+
+        if len(title) > 32:
+            return UnprocessableEntity(description="NOTE_TITLE_MAX_LENGTH")
 
         current_time = int(time.time())
         note = Note.query.filter_by(id=id, user_id=user.id).first()
