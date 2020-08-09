@@ -43,3 +43,11 @@ class NoteResource(Resource):
         )
 
         return jsonify({"data": note})
+    
+    @staticmethod
+    @auth(id)
+    @swag_from("../swagger/auth/register.yml")
+    def delete(user, id):
+        note = NoteRepository.delete(user=user, id=id)
+
+        return jsonify({"data": note})

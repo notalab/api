@@ -46,3 +46,16 @@ class NoteRepository:
         note.save()
 
         return note.transform()
+    
+    @staticmethod
+    def delete(user, id):
+        """ Delete a notebook by ID """
+
+        note = Note.query.filter_by(id=id, user_id=user.id).first()
+
+        if not note:
+            raise UnprocessableEntity(description="NOTE_NOT_FOUND")
+        
+        note.delete()
+
+        return 200
