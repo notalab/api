@@ -4,3 +4,4 @@ db = SQLAlchemy()
 
 from .user import User
 from .notebook import Notebook
+from .notes import Note
