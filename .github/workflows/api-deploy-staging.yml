@@ -23,8 +23,13 @@ jobs:
         username: root
         key: ${{ secrets.SSH_KEY }}
         script: |
+          export APPLICATION_POSTGRES_HOST=${{ secrets.APPLICATION_POSTGRES_HOST }}
+          export APPLICATION_POSTGRES_USER=${{ secrets.APPLICATION_POSTGRES_USER }}
+          export APPLICATION_POSTGRES_PW=${{ secrets.APPLICATION_POSTGRES_PW }}
+          export APPLICATION_POSTGRES_PORT=${{ secrets.APPLICATION_POSTGRES_PORT }}
+          export APPLICATION_POSTGRES_DB=${{ secrets.APPLICATION_POSTGRES_DB }}
           cd nota-staging
-          git fetch --all && git checkout develop
+          git fetch --all && git checkout staging
           git pull
           docker build -t nota:latest .
           docker stop nota && docker rm nota
